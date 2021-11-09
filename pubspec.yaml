@@ -68,9 +68,17 @@ flutter:
       - assets/saly2.png
       - assets/saly3.png
       - assets/AccessPage1.png
-      - assets/AccessPage2.png
+      - assets/SignInPage.png
       - assets/arrow-right.png
       - assets/button1.png
+      - assets/Main_1_block1.png
+      - assets/Main_widget3.png
+      - assets/Main_widget4.png
+      - assets/Main_widget5.png
+
+
+
+
 
   #   - images/a_dot_ham.jpeg
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/cupertino.dart';
-import 'E_Widgets/BackButtonE.dart';
+import 'access_pages/access_page.dart';
+import 'main_pages/home_page.dart';
 void main() {
 //  runApp( MyApp());
   runApp( MaterialApp(
@@ -11,12 +12,12 @@ void main() {
   ));
 }
 
-class HomePage extends StatefulWidget {
+class HelloPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HelloPageState createState() => _HelloPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HelloPageState extends State<HelloPage> {
 
   bool is_authorized=false;
   bool is_first_time=false;
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Image.asset('assets/saly2.png'),
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 80),
+                padding: EdgeInsets.symmetric(vertical: 0,horizontal: 80),
                 child:
                 RichText(
                   text: const TextSpan(
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Image.asset('assets/saly3.png'),
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 80),
+                padding: EdgeInsets.symmetric(vertical: 0,horizontal: 80),
                 child:
                 RichText(
                   text: const TextSpan(
@@ -244,7 +245,7 @@ class _HomePageState extends State<HomePage> {
 
                 ),
 
-              ),
+              ), //Button далее
               SmoothPageIndicator(
                 controller: controller,
                 count: 3,
@@ -265,381 +266,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
 //New route(screen or page
-
-class AccessPage1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                backButton(context),
-                Padding(padding: EdgeInsets.all(0),
-                  child: Text('Ну что, начнем?',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                    ),
-
-                  ),
-                ),
-                Padding(padding: EdgeInsets.all(0),
-                  child: Text('Для начала войдите в свой профиль?',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-
-                  ),
-                ),
-                Padding(padding: EdgeInsets.all(0),
-                  child: Image.asset('assets/AccessPage1.png'),
-
-                ),
-
-              ],
-            ),
-            Column(
-              children: [
-                Padding(padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-                  child: RaisedButton(
-                    child:  Container(
-                      margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("Войти",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
-                    color: const Color(0xFFFF734A),
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color:Color(0xFFFF734A) )),
-                    onPressed: (){
-                      Navigator.push(context, CupertinoPageRoute(
-                          builder: (context)=>AccessPage2()
-                      )
-                      ); //Navigator
-                    }, //onPressed
-
-                  ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
-                  child: RaisedButton(
-                    child:  Container(
-                      margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Зарегистрироваться",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 0,horizontal: 0),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color:Colors.black )),
-                    onPressed: (){
-                      Navigator.push(context, CupertinoPageRoute(
-                          builder: (context)=>AuthorizationPage2()
-                      )
-                      ); //Navigator
-                    }, //onPressed
-
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AuthorizationPage2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                backButton(context),
-                Padding(padding: EdgeInsets.all(0),
-                  child: Image.asset('assets/AccessPage2.png'),
-                ),
-                 Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                  child: Row(
-                    children: const <Widget>[
-                      Text('Ваше имя',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                        ),)
-                    ],
-                  ),
-
-
-                ),
-                 Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
-                  child:
-                  TextField(
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      hintText: "Ваше имя",
-                      enabledBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        borderSide:  BorderSide(color: Color.fromRGBO(169, 168, 168, 0.2), width: 0.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      disabledBorder:  OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      hintStyle: TextStyle(fontSize: 20.0, color: Color.fromRGBO(39, 39, 39, 0.4)),
-                      filled: true,
-                      fillColor: Color.fromRGBO(169, 168, 168, 0.2),
-
-                    ),
-                  ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                  child: Row(
-                    children: const <Widget>[
-                      Text('Ваш номер телефона',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                        ),)
-                    ],
-                  ),
-
-
-                ),
-                 Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
-                  child:
-                  TextField(
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      hintText: "+7",
-                      enabledBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        borderSide:  BorderSide(color: Color.fromRGBO(169, 168, 168, 0.2), width: 0.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      disabledBorder:  OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      hintStyle: TextStyle(fontSize: 20.0, color: Color.fromRGBO(39, 39, 39, 0.4)),
-                      filled: true,
-                      fillColor: Color.fromRGBO(169, 168, 168, 0.2),
-
-                    ),
-                  )
-                ),
-              ],
-            ),
-            Column(
-              children:  [
-                Padding(padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-                  child: RaisedButton(
-                    child:  Container(
-                      margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("Отправить код",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
-                    color: const Color(0xFFFF734A),
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color:Color(0xFFFF734A) )),
-                    onPressed: (){
-                      Navigator.push(context, CupertinoPageRoute(
-                          builder: (context)=>AccessPage2()
-                      )
-                      ); //Navigator
-                    }, //onPressed
-
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AccessPage2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                backButton(context),
-                Padding(padding: EdgeInsets.all(0),
-                  child: Image.asset('assets/AccessPage2.png'),
-                ),
-
-                Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                  child: Row(
-                    children: const <Widget>[
-                      Text('Ваш номер телефона',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                        ),)
-                    ],
-                  ),
-
-
-                ),
-                const Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
-                  child:
-                  TextField(
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      hintText: "+7",
-                      enabledBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        borderSide:  BorderSide(color: Color.fromRGBO(169, 168, 168, 0.2), width: 0.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      disabledBorder:  OutlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                      ),
-                      hintStyle: TextStyle(fontSize: 20.0, color: Color.fromRGBO(39, 39, 39, 0.4)),
-                      filled: true,
-                      fillColor: Color.fromRGBO(169, 168, 168, 0.2),
-
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children:  [
-                Padding(padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-                  child: RaisedButton(
-                    child:  Container(
-                      margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("Отправить код",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
-                    color: const Color(0xFFFF734A),
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color:Color(0xFFFF734A) )),
-                    onPressed: (){
-                      Navigator.push(context, CupertinoPageRoute(
-                          builder: (context)=>AccessPage2()
-                      )
-                      ); //Navigator
-                    }, //onPressed
-
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 
 

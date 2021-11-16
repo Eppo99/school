@@ -1,23 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'all_subjects.dart';
+import 'profile.dart';
 import 'question_page.dart';
+import 'settings.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget  {
   @override
   _HomePageState createState() => _HomePageState();
 }
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+  late Animation<double>animation;
+  late Animation<double>animation2;
+  late AnimationController animController;
+  bool isForward=false;
+
+  @override
+  void initState(){
+    super.initState();
+    animController=AnimationController(
+        duration: Duration(milliseconds: 200),vsync: this);
+    final curvedAnimation =
+    CurvedAnimation(parent: animController, curve: Curves.easeOutCubic);
+    animation=Tween<double>(begin: 0,end:350).animate(curvedAnimation)
+      ..addListener(() {
+        setState(() {
+        });
+      });
+    animation2=Tween<double>(begin: 0,end:56).animate(curvedAnimation)
+      ..addListener(() {
+        setState(() {
+        });
+      });
+  }
   Widget appBarText=   Row(
-    children: [
-      const Padding(
-        padding: EdgeInsets.all(5),
-        child: Icon(
-          Icons.menu,
-        ),
-      ),
-      const Padding(
+    children: const [
+      Padding(
         padding: EdgeInsets.all(10),
         child: Text('Привет, Ануар 👋',
           style: TextStyle(
@@ -28,54 +48,199 @@ class _HomePageState extends State<HomePage> {
       ),
     ],
   ) ;
-
+  bool menuButton=true;
+  EdgeInsets drawingText=EdgeInsets.all(10);
   final controller = PageController(viewportFraction: 1, keepPage: true);
   final subjectController = PageController(viewportFraction: 1, keepPage: false,);
+   b(bool c){
+     setState(() {
+       menuButton= c;
+     });
+     debugPrint("$c");
+   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leadingWidth: 56-animation2.value,
+        automaticallyImplyLeading: menuButton,
+        titleSpacing: 0,
+        title:  Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
+          child:Stack(
+            children:  <Widget>[
+              appBarText,
+              search(),
+//              SearchButton(),
+            ],
+          ),
+        ),
+//        backgroundColor: Colors.green[600],
+      ),
+      drawer: Drawer(
+        child:
+        Scaffold(
+          body: ListView(
+            children:  <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+//                color: HexColor("#FFAC71"),
+                      gradient: LinearGradient(
+                        end: Alignment.topRight,
+                        begin: Alignment.bottomLeft,
+                        colors: [
+                          HexColor("FF8450"),
+                          HexColor("FFAC71"),
+                        ],)
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
+                                children:  <Widget>[
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: EdgeInsets.all(2),
+                                          child: InkWell(
+                                              child: Text("Ануар", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: 20),),
+                                              onTap: (){
+                                                Navigator.push(context, CupertinoPageRoute(
+                                                    builder: (context)=>Profile()
+                                                ));
+                                              },
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.all(2),
+                                          child: Text("Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.all(2),
+                                          child: Text("до 26.11.2022", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 7),),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:  drawingText,
+                                      child: Text("Форум", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child:
+                                      InkWell(child: Text("Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                        onTap: (){
+                                          Navigator.push(context, CupertinoPageRoute(
+                                              builder: (context)=>Settings()
+                                          ));
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Text("Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: drawingText,
+                                      child:
+                                      Text("Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                    ),
+                                    Padding(
+                                      padding: drawingText,
+                                      child: Switch(
+                                        value: true,
+                                        onChanged: (value) {
+                                          setState(() {
+//                                  isSwitched = value;
+//                                  print(isSwitched);
+                                          });
+                                        },
+                                        activeTrackColor: Colors.yellow,
+                                        activeColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 70),
+                          child: Image.asset('assets/DrawerImage.png'),
+                        ),
+                      ],
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                child:Row(
-//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  <Widget>[
-                    appBarText,
-                    SearchButton(),
-
-//                    Container(
-////                        margin: EdgeInsets.only(left: 200),
-//                        child: SearchButton()
-//                    ),
-//                    Padding(
-//                      padding: const EdgeInsets.all(5),
-//                      child:  FloatingActionButton(
-//                        elevation: 0,
-//                        child:
-////                        const Icon(
-////                          Icons.search,
-////                          color: Colors.black,
-////                        ),
-//                        backgroundColor: const Color.fromRGBO(255, 115, 74, 0.1),
-//                        shape: RoundedRectangleBorder(
-//                          borderRadius: BorderRadius.circular(20),),
-//                        onPressed: (){ //searchButton
-////                          if(controller.page==2 ){
-////                            Navigator.push(context, CupertinoPageRoute(
-////                                builder: (context)=>AccessPage1()));
-////                          }
-//                        },
-//                      ),
-//                    )
-                  ],
-                ),
-              ), //1st row search
               SizedBox(
                 height: 200,
                 child: PageView.builder(
@@ -242,9 +407,9 @@ class _HomePageState extends State<HomePage> {
 
                               ), //Time icon
                               Padding(
-                                padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                padding: const EdgeInsets.fromLTRB(20, 5, 0, 10),
                                 child: Row(
-                                  children: <Widget>[
+                                  children: const <Widget>[
                                     Padding(padding: EdgeInsets.only(right: 10),
 
                                         child:Icon(Icons.book,color: Colors.white,size: 18,)
@@ -270,7 +435,7 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
                                 child: Row(
-                                  children: <Widget>[
+                                  children: const <Widget>[
                                     Padding(padding: EdgeInsets.only(right: 10),
                                         child:Icon(Icons.language,color: Colors.white,size: 18,)
                                     ),
@@ -457,129 +622,82 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
-
-
-
-
-
-class SearchButton extends StatefulWidget {
-  @override
-  _SearchButtonState createState() => _SearchButtonState();
-}
-
-class _SearchButtonState extends State<SearchButton> with SingleTickerProviderStateMixin {
-  late Animation<double>animation;
-  late AnimationController animController;
-  bool isForward=false;
-  @override
-  void initState(){
-    super.initState();
-    animController=AnimationController(
-        duration: Duration(milliseconds: 500),vsync: this);
-    final curvedAnimation =
-    CurvedAnimation(parent: animController, curve: Curves.easeOutSine);
-    animation=Tween<double>(begin: 0,end:150).animate(curvedAnimation)
-      ..addListener(() {
-        setState(() {
-
-        });
-      });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return
-      IntrinsicWidth(
-        child: Container(
-          color: Colors.transparent,
-          width: 100,
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Container(
-                width: animation.value,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      bottomLeft: Radius.circular(50),
-                    )
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20,bottom: 5),
-                  child: TextField(
-                    cursorColor: Colors.white12,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration:new  InputDecoration(
+  Widget search(){
+    return IntrinsicWidth(
+      child: Container(
+        color: Colors.transparent,
+        width: 400,
+        height: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              width: animation.value,
+              decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                    bottomLeft: Radius.circular(50),
+                  )
+              ),
+              child:
+              const Padding(
+                padding: EdgeInsets.only(left: 20,bottom: 5),
+                child: TextField(
+                  cursorColor: Colors.white12,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  decoration:InputDecoration(
 //                      prefixIcon: new Icon(Icons.search,color: Colors.white,),
 //                      border: InputBorder.none,
-                        hintText: "Search...",
-                        hintStyle: new TextStyle(color: Colors.white)
-                    ),
+                      hintText: "Search...",
+                      hintStyle: TextStyle(color: Colors.white)
                   ),
                 ),
-
               ),
-              Container(
-                width: 50,
-                height: 52,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: animation.value>1 ? BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(50),
-                        topRight: Radius.circular(50)
-                    ):BorderRadius.circular(50)
-
-                ),
-                child:  IconButton(
-                    onPressed: (){
-                      setState(() {
-                        if(!isForward){
-                          animController.forward();
-                          isForward=true;
-                          _HomePageState().appBarText=Container(width: 0,);
-                        } else{
-                          animController.reverse();
-                          isForward=false;
-                          _HomePageState().appBarText=
-                              Row(
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.all(5),
-                                    child: Icon(
-                                      Icons.menu,
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Text('Привет, Ануар 👋',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                        }
-                      });
-                    },
-                    icon: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    )
-
-                ),
-
+            ),
+            Container(
+              width: 50,
+              height: 52,
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: animation.value>1 ? const BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(50),
+                      topRight: Radius.circular(50)
+                  ):BorderRadius.circular(50)
               ),
-            ],
-          ),
+              child:  InkWell(
+                  onTap: (){
+                    setState(() {
+                      if(!isForward){
+                        animController.forward();
+                        isForward=true;
+                        b(false);
+                      }
+                      else{
+                        animController.reverse();
+                        isForward=false;
+                        b(true);
+                      }
+                    });
+                  },
+                  child: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  )
+              ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }
+
+
+
+
+

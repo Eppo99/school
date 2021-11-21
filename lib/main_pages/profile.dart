@@ -40,8 +40,6 @@ class _ProfileState extends State<Profile> {
                         style: smallTextStyle,)
                     ],
                   ),
-
-
                 ),
                 const Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
                   child:

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
+import 'faq.dart';
+import 'about.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -10,9 +12,8 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   TextStyle mainBold=const TextStyle(fontWeight: FontWeight.w700,fontSize: 20);
 
-  TextStyle lessBold=const TextStyle(fontWeight: FontWeight.w600,fontSize: 18);
-  TextStyle Bold16=const TextStyle(fontWeight: FontWeight.w700,fontSize: 16);
-  TextStyle thinText= TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: HexColor("FF7648"));
+  TextStyle lessBold=const TextStyle(fontWeight: FontWeight.w700,fontSize: 18);
+  TextStyle thinText= TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: HexColor("FF7648"),decoration: TextDecoration.underline);
 
 
 
@@ -22,7 +23,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.only(left: 30,right: 30),
+          margin: EdgeInsets.only(left: 25,right: 25),
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -35,7 +36,7 @@ class _SettingsState extends State<Settings> {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(0),
                     child: Text("Звук",style: lessBold,),
                   ),
                   Padding(
@@ -60,7 +61,7 @@ class _SettingsState extends State<Settings> {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(0),
                     child: Text("Язык интерфейса",style: lessBold,),
                   ),
                   Padding(
@@ -85,16 +86,46 @@ class _SettingsState extends State<Settings> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(0),
                     child: Text("О проекте:",style: lessBold,),
                   ),
+
                   Padding(
-                    padding: EdgeInsets.all(8),
-                    child:
-                      Text("BoBo всегда рад рассказать о себе. Первая идея появилась ещё в 2020 году. Насколько мы реально полезны ученикам? Узнать подробнее можете тут",
-                      style: Bold16,
-                      )
+                    padding: const EdgeInsets.only(top: 16,left: 10),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        RichText(
+                          text:   TextSpan(
+                            text: 'BoBo',
+                            style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16,color: Color(0xFFFF734A)),
+                            children:   <TextSpan>[
+                          TextSpan(
+                          text: ' всегда рад рассказать о себе.\nПервая идея появилась ещё в 2020 году.\nНасколько мы реально полезны\nученикам? Узнать подробнее можете ',
+                            style: TextStyle(fontWeight: FontWeight.w400,fontSize: 16,color: Theme.of(context).colorScheme.onBackground),),
+                            TextSpan(text: 'тут', style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: Color(0xFFFF734A),
+                            ),
+                              ),
+                            ],
+                          ),
+                          textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.left,
+                        ),
+                        InkWell(onTap: (){
+                          Navigator.push(context, CupertinoPageRoute(builder: (context)=>About()));
+                        }, child: Text('тут', style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Color(0xFFFF734A),
+                        ),),
+                        )
+                      ],
+                    ),
                   ),
+
 
                 ],
               ),//about project
@@ -102,23 +133,55 @@ class _SettingsState extends State<Settings> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("FAQ",style: lessBold,),
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Text("FAQ:",style: lessBold,),
                   ),
+
                   Padding(
-                      padding: EdgeInsets.all(8),
-                      child:Text("BoBo готов ответить на любые интересующие вас вопросы. Узнать детальный ответ на часто задаваемые вопросы вы можете тут",
-                        style: Bold16,
-                      )
+                    padding: const EdgeInsets.only(top: 16,left: 10),
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        RichText(
+                          text:   TextSpan(
+                            text: 'BoBo',
+                            style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16,color: Color(0xFFFF734A)),
+                            children:   <TextSpan>[
+                              TextSpan(
+                                text: ' готов ответить на любые\nинтересующие вас вопросы. Узнать\nдетальный ответ на часто задаваемые\nвопросы вы можете  ',
+                                style: TextStyle(fontWeight: FontWeight.w400,fontSize: 16,color: Theme.of(context).colorScheme.onBackground),),
+                              TextSpan(text: 'тут', style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                color: Color(0xFFFF734A),
+                              ),
+                              ),
+                            ],
+                          ),
+                          textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.left,
+                        ),
+                        InkWell(onTap: (){
+                          Navigator.push(context, CupertinoPageRoute(builder: (context)=>FAQ()));
+                        }, child: const Text('             тут', style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Color(0xFFFF734A),
+                        ),),
+                        )
+                      ],
+                    ),
                   ),
+
 
                 ],
               ),//FAQ
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 20),
                     child: Text("Остальное:",style: lessBold,),
                   ),
                   Padding(
@@ -126,7 +189,6 @@ class _SettingsState extends State<Settings> {
                       child:
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -142,14 +204,12 @@ class _SettingsState extends State<Settings> {
                           ),
                         ],
                       ),
-
-
                   ),
 
                 ],
               ),//others
               Padding(
-                padding: const EdgeInsets.only(top: 55),
+                padding: const EdgeInsets.only(top: 35),
                 child: Row(
                   children: <Widget>[
                     Padding(
@@ -160,16 +220,9 @@ class _SettingsState extends State<Settings> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text("Выйти с профиля",style: lessBold,),
                     ),
-
-
                   ],
                 ),
               ),//out
-
-
-
-
-
             ],
           ),
         ),

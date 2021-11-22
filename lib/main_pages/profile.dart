@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:oneunion/localization/demo_localizations.dart';
 import 'promocode.dart';
 class Profile extends StatefulWidget {
   @override
@@ -16,7 +15,6 @@ class _ProfileState extends State<Profile> {
     ),);
   @override
   Widget build(BuildContext context) {
-    final getTranslated = DemoLocalizations.of(context);
     return Scaffold(
       body: Container(
         child: Column(
@@ -26,7 +24,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(getTranslated.getTranslatedValue('profile')??"Профиль",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
+                  child: Text("Профиль",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -37,7 +35,7 @@ class _ProfileState extends State<Profile> {
                 Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
                   child: Row(
                     children:  <Widget>[
-                      Text(getTranslated.getTranslatedValue('name')??'Ваше имя',
+                      Text('Ваше имя',
                         textAlign: TextAlign.left,
                         style: smallTextStyle,)
                     ],
@@ -45,12 +43,12 @@ class _ProfileState extends State<Profile> {
 
 
                 ),
-                 Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
+                const Padding(padding: EdgeInsets.fromLTRB(15, 0, 15, 40),
                   child:
                   TextField(
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                      hintText: getTranslated.getTranslatedValue('name')?? "Ваше имя",
+                      hintText: "Ваше имя",
                       enabledBorder:  OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(20.0),
@@ -79,7 +77,7 @@ class _ProfileState extends State<Profile> {
                 Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
                   child: Row(
                     children:  <Widget>[
-                      Text(getTranslated.getTranslatedValue('phone')??'Ваш номер телефона',
+                      Text('Ваш номер телефона',
                         textAlign: TextAlign.left,
                         style: smallTextStyle,)
                     ],
@@ -122,7 +120,7 @@ class _ProfileState extends State<Profile> {
                 Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
                   child: Row(
                     children:  <Widget>[
-                      Text(getTranslated.getTranslatedValue('code')??'Ваш личный промокод',
+                      Text('Ваш личный промокод',
                         textAlign: TextAlign.left,
                         style: smallTextStyle,)
                     ],
@@ -189,7 +187,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Row(
-                  children:  [
+                  children: const [
                     Padding(padding: EdgeInsets.fromLTRB(0, 5, 15, 5),
                       child:
                       SizedBox(
@@ -200,7 +198,7 @@ class _ProfileState extends State<Profile> {
                             textAlign: TextAlign.left,
                             style: TextStyle(fontSize: 20),
                             decoration: InputDecoration(
-                              hintText: getTranslated.getTranslatedValue('promoCode')??"ввести промокод",
+                              hintText: "ввести промокод",
                               enabledBorder:  OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20.0),
@@ -235,8 +233,8 @@ class _ProfileState extends State<Profile> {
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
                   child: Row(
-                    children:  <Widget>[
-                      Text(getTranslated.getTranslatedValue('bonus')??'Накоплено баллов: 500',
+                    children: const <Widget>[
+                      Text('Накоплено баллов: 500',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -255,8 +253,8 @@ class _ProfileState extends State<Profile> {
                   margin: EdgeInsets.fromLTRB(10, 20, 10, 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
-                      Text(getTranslated.getTranslatedValue('confirm')?? "Применить",
+                    children: const [
+                      Text("Применить",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,

@@ -28,10 +28,10 @@ import 'package:flutter/cupertino.dart';
   @override
   Widget build(BuildContext context) {
     return
-      Material(
-        child: Container(
+      Scaffold(
+        body: Container(
         decoration: const BoxDecoration(
-          color: Colors.white,
+//          color: Colors.white,
         ),
         child: Column(
           children: <Widget>[
@@ -53,7 +53,7 @@ import 'package:flutter/cupertino.dart';
                               )
                             ],
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
+                            color: Theme.of(context).primaryColorDark),
                         child: Column(
                           children: [
                             InkWell(
@@ -68,11 +68,11 @@ import 'package:flutter/cupertino.dart';
                                   borderRadius: BorderRadius.circular(10),
                                   color: subjectColors[i+j],
                                 ),
-                                child: Text("${subjects[i+j]}",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                ),
+//                                child: Text("${subjects[i+j]}",
+//                                  style: TextStyle(
+//                                    fontSize: 15,
+//                                  ),
+//                                ),
                               ),
                             ),
                             Padding(
@@ -80,7 +80,7 @@ import 'package:flutter/cupertino.dart';
                               child: Text("${subjects[i+j]}",
                                 style: TextStyle(
                                     fontSize: 15,
-                                    color: Colors.blueGrey
+                                    color: Theme.of(context).colorScheme.onBackground
                                 ),
                               ),
                             ),

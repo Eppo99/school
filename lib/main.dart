@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'access_pages/access_page.dart';
 import 'main_pages/home_page.dart';
+import 'main_pages/about.dart';
+import 'main_pages/my_friends.dart';
+import 'main_pages/settings.dart';
+
 void main() {
 //  runApp( MyApp());
   runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      brightness: Brightness.dark,
+//    primaryColor: Colors.red[200],
+//      scaffoldBackgroundColor: Colors.white,
+//      appBarTheme: AppBarTheme(
+//        titleTextStyle: TextStyle(color: Colors.black),
+//        backgroundColor: HexColor("#fafafa") ,
+////        color: ,
+//        iconTheme: IconThemeData(color: Colors.black)
+//      ),
+
+
+    ),
+
     title: 'Navigation Basics',
     home: HomePage(),
   ));
@@ -18,11 +37,9 @@ class HelloPage extends StatefulWidget {
 }
 
 class _HelloPageState extends State<HelloPage> {
-
   bool is_authorized=false;
   bool is_first_time=false;
   final controller = PageController(viewportFraction: 1, keepPage: true);
-
   @override
   Widget build(BuildContext context) {
     final pages = [
@@ -141,47 +158,6 @@ class _HelloPageState extends State<HelloPage> {
       ),
       //third page end
     ];
-//    List.generate(
-//        3,
-//            (index) => Container(
-//          decoration: BoxDecoration(
-//            borderRadius: BorderRadius.circular(16),
-//            color: Colors.white,
-//          ),
-//          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-//          child: Column(
-//            mainAxisAlignment: MainAxisAlignment.start,
-//            crossAxisAlignment: CrossAxisAlignment.center,
-//            children: [
-//              Image.asset('assets/saly.png'),
-//              Padding(
-//                  padding: EdgeInsets.symmetric(vertical: 20,horizontal: 80),
-//                  child:
-//                  RichText(
-//                    text: const TextSpan(
-//                      text: 'Мы рады видеть вас в ',
-//                      style: TextStyle(
-//                        fontWeight: FontWeight.w700,
-//                        fontSize: 32,
-//                        color: Colors.black87,
-//                      ),
-//                      children:  <TextSpan>[
-//                        TextSpan(text: 'BoBo', style: TextStyle(
-//                          fontWeight: FontWeight.w700,
-//                          fontSize: 32,
-//                          color: Color(0xFFFF734A),
-//                        )
-//                        ),
-//                      ],
-//                    ),
-//                    textDirection: TextDirection.ltr,
-//                    textAlign: TextAlign.center,
-//                  )
-//              ),
-//            ],
-//          ),
-//
-//            ));
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -206,7 +182,7 @@ class _HelloPageState extends State<HelloPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("Далее",
+                        const Text("Далее",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18,
@@ -217,7 +193,7 @@ class _HelloPageState extends State<HelloPage> {
                         Container(
                           padding: EdgeInsets.all(15),
                           margin: EdgeInsets.fromLTRB(25, 5, 5, 5),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(80)),
                             color: Colors.white30,
                           ),

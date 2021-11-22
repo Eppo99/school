@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:oneunion/main_pages/my_friends.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'all_subjects.dart';
 import 'profile.dart';
 import 'question_page.dart';
 import 'settings.dart';
+import 'subscription.dart';
+import 'chat_screen.dart';
 
 class HomePage extends StatefulWidget  {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -35,19 +40,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         });
       });
   }
-  Widget appBarText=   Row(
-    children: const [
-      Padding(
-        padding: EdgeInsets.all(10),
-        child: Text('Привет, Ануар 👋',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    ],
-  ) ;
   bool menuButton=true;
   EdgeInsets drawingText=EdgeInsets.all(10);
   final controller = PageController(viewportFraction: 1, keepPage: true);
@@ -62,6 +54,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        foregroundColor: Theme.of(context).colorScheme.onBackground,
+        elevation: 0,
         centerTitle: true,
         leadingWidth: 56-animation2.value,
         automaticallyImplyLeading: menuButton,
@@ -70,7 +65,20 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
           child:Stack(
             children:  <Widget>[
-              appBarText,
+          Row(
+          children: const [
+              Padding(
+              padding: EdgeInsets.all(10),
+          child: Text('Привет, Ануар 👋',
+            style: TextStyle(
+
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        ],
+      ),
               search(),
 //              SearchButton(),
             ],
@@ -81,161 +89,169 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       drawer: Drawer(
         child:
         Scaffold(
-          body: ListView(
-            children:  <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
 //                color: HexColor("#FFAC71"),
-                      gradient: LinearGradient(
-                        end: Alignment.topRight,
-                        begin: Alignment.bottomLeft,
-                        colors: [
-                          HexColor("FF8450"),
-                          HexColor("FFAC71"),
-                        ],)
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children:  <Widget>[
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: CircleAvatar(
-                                    ),
+              gradient: LinearGradient(
+                end: Alignment.topRight,
+                begin: Alignment.bottomLeft,
+                colors: [
+                  HexColor("FF8450"),
+                  HexColor("FFAC71"),
+                ],)
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children:  <Widget>[
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: InkWell(
+                                      child: Text("Ануар", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: 20),),
+                                      onTap: (){
+                                        Navigator.push(context, CupertinoPageRoute(
+                                            builder: (context)=>Profile()
+                                        ));
+                                      },
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: EdgeInsets.all(2),
-                                          child: InkWell(
-                                              child: Text("Ануар", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: 20),),
-                                              onTap: (){
-                                                Navigator.push(context, CupertinoPageRoute(
-                                                    builder: (context)=>Profile()
-                                                ));
-                                              },
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.all(2),
-                                          child: Text("Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.all(2),
-                                          child: Text("до 26.11.2022", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 7),),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                  ],
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:  drawingText,
-                                      child: Text("Форум", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child:
-                                      InkWell(child: Text("Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                        onTap: (){
-                                          Navigator.push(context, CupertinoPageRoute(
-                                              builder: (context)=>Settings()
-                                          ));
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Text("Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                  ],
+                                const Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: Text("Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
                                 ),
+                                const Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: Text("до 26.11.2022", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 7),),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: drawingText,
+                              child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>My_friends()));
+                                  },
+                                  child: Text("Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: drawingText,
-                                      child:
-                                      Text("Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-                                    ),
-                                    Padding(
-                                      padding: drawingText,
-                                      child: Switch(
-                                        value: true,
-                                        onChanged: (value) {
-                                          setState(() {
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=>Subscription()));
+                                },
+                                  child: Text("Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                              ),
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child: Text("Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding:  drawingText,
+                              child: Text("Форум", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child:
+                              InkWell(child: Text("Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                                onTap: (){
+                                  Navigator.push(context, CupertinoPageRoute(
+                                      builder: (context)=>Settings()
+                                  ));
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>ChatScreen()));
+                                  },
+                                  child: Text("Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: drawingText,
+                              child:
+                              Text("Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                            ),
+                            Padding(
+                              padding: drawingText,
+                              child: Switch(
+                                value: true,
+                                onChanged: (value) {
+                                  setState(() {
 //                                  isSwitched = value;
 //                                  print(isSwitched);
-                                          });
-                                        },
-                                        activeTrackColor: Colors.yellow,
-                                        activeColor: Colors.orangeAccent,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  });
+                                },
+                                activeTrackColor: Colors.yellow,
+                                activeColor: Colors.orangeAccent,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 70),
-                          child: Image.asset('assets/DrawerImage.png'),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-            ],
+                ),
+                Padding(
+                  padding:  EdgeInsets.zero,
+                  child: Image.asset('assets/DrawerImage.png'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-      backgroundColor: Colors.white,
+//      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -626,7 +642,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return IntrinsicWidth(
       child: Container(
         color: Colors.transparent,
-        width: 400,
+        width: MediaQuery.of(context).size.width,
         height: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,

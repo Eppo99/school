@@ -1,67 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'access_pages/access_page.dart';
-import 'localization/demo_localizations.dart';
 import 'main_pages/home_page.dart';
-
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
 //  runApp( MyApp());
-  runApp(MyApp());
+  runApp( MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Navigation Basics',
+    home: HomePage(),
+  ));
 }
-
-class MyApp extends StatefulWidget {
-
-  static void setLocale(BuildContext context, Locale locale) {
-    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
-    state!.setLocale(locale);
-  }
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Locale? _locale;
-
-  void setLocale(Locale locale){
-    setState(() {
-      _locale = locale;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: _locale,
-      localizationsDelegates: const [
-        DemoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      localeResolutionCallback: (deviceLocale, supportedLocales) {
-        for (var locale in supportedLocales) {
-          if(locale.languageCode == deviceLocale!.languageCode && locale.countryCode == deviceLocale.countryCode){
-            return deviceLocale;
-          }
-        }
-        return supportedLocales.first;
-      },
-      supportedLocales: const [
-        Locale('ru', 'RU'),
-        Locale('kk', 'KK'), // English, no country code
-        // Russian, no country code
-      ],
-      debugShowCheckedModeBanner: false,
-      title: 'Navigation Basics',
-      home: HomePage(),
-    );
-  }
-}
-
 
 class HelloPage extends StatefulWidget {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:oneunion/localization/demo_localizations.dart';
 import 'package:oneunion/main_pages/my_friends.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
    }
   @override
   Widget build(BuildContext context) {
+    final getTranslated = DemoLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -67,11 +69,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child:Stack(
             children:  <Widget>[
           Row(
-          children: const [
+          children:  [
               Padding(
-              padding: EdgeInsets.all(10),
-          child: Text('Привет, Ануар 👋',
-            style: TextStyle(
+              padding: const EdgeInsets.all(10),
+          child: Text(getTranslated.getTranslatedValue('mainAppBar') ??'Привет, Ануар 👋',
+            style: const TextStyle(
 
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -134,9 +136,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                       },
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Text("Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
+                                 Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: Text(getTranslated.getTranslatedValue('subscription') ??"Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.all(2),
@@ -158,7 +160,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                   onTap: (){
                                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>My_friends()));
                                   },
-                                  child: Text("Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                                  child: Text(getTranslated.getTranslatedValue('friends') ??"Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
 
                               ),
                             ),
@@ -168,7 +170,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 onTap: (){
                                   Navigator.push(context, CupertinoPageRoute(builder: (context)=>Subscription()));
                                 },
-                                  child: Text("Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                                  child: Text(getTranslated.getTranslatedValue('subs') ??"Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
                               ),
                             ),
                             Padding(
@@ -182,7 +184,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             ),
                             Padding(
                               padding: drawingText,
-                              child: Text("Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              child: Text(getTranslated.getTranslatedValue('fav') ??"Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
                             ),
                           ],
                         ),
@@ -199,7 +201,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             Padding(
                               padding: drawingText,
                               child:
-                              InkWell(child: Text("Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              InkWell(child: Text(getTranslated.getTranslatedValue('params') ??"Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
                                 onTap: (){
                                   Navigator.push(context, CupertinoPageRoute(
                                       builder: (context)=>Settings()
@@ -213,7 +215,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                   onTap: (){
                                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>ChatScreen()));
                                   },
-                                  child: Text("Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
+                                  child: Text(getTranslated.getTranslatedValue('support') ??"Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
                             ),
                           ],
                         ),
@@ -226,7 +228,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             Padding(
                               padding: drawingText,
                               child:
-                              Text("Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              Text(getTranslated.getTranslatedValue('blackTheme') ??"Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
                             ),
                             Padding(
                               padding: drawingText,
@@ -293,7 +295,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                           color: Color.fromRGBO(255, 55, 95, 1),
                                           borderRadius: BorderRadius.all(Radius.circular(80)),
                                         ),
-                                        child: const Text('Важно!',
+                                        child:  Text(getTranslated.getTranslatedValue('important') ??'Важно!',
                                             textAlign: TextAlign.start,
                                             style:TextStyle(
                                               color:Colors.white,
@@ -301,23 +303,23 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                         ),
                                       ),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 15, 10, 25),
+                                     Padding(
+                                      padding:const  EdgeInsets.fromLTRB(10, 15, 10, 25),
                                       child: Text(
-                                        'Обновленные правила '
+                                        getTranslated.getTranslatedValue('regulations') ??'Обновленные правила '
                                             'сдачи ЕНТ в Казахстане',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 16,
                                           fontFamily: 'Poppins',
                                         ),
                                       ),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.all(10),
+                                     Padding(
+                                      padding: const EdgeInsets.all(10),
                                       child: Text(
-                                        'Подробнее',
-                                        style: TextStyle(
+                                        getTranslated.getTranslatedValue('more') ??'Подробнее',
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14,
                                           fontFamily: 'SF Pro Display',
@@ -362,10 +364,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                      InkWell(
-                      child: const Text(
-                        'Сдать полный тест',
+                      child:  Text(
+                        getTranslated.getTranslatedValue('setFullTest') ??'Сдать полный тест',
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
                           fontFamily: 'Poppins',
@@ -390,12 +392,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(20, 35, 20, 10),
+                               Padding(
+                                padding:const  EdgeInsets.fromLTRB(20, 35, 20, 10),
                                 child: Text(
-                                  'Полный тест ЕНТ',
+                                  getTranslated.getTranslatedValue('fullTest') ??'Полный тест ЕНТ',
                                   textAlign: TextAlign.start,
-                                  style: TextStyle(
+                                  style:const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
                                     fontSize: 18,
@@ -406,15 +408,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
                                 child: Row(
-                                  children: const <Widget>[
-                                    Padding(padding: EdgeInsets.only(right: 10),
+                                  children:  <Widget>[
+                                    const Padding(padding: EdgeInsets.only(right: 10),
                                         child:Icon(Icons.access_time,color: Colors.white,size: 18,)
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        'На выполнение: 4 часа',
+                                        getTranslated.getTranslatedValue('time') ?? 'На выполнение: 4 часа',
                                         textAlign: TextAlign.start,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
                                           fontSize: 12,
@@ -431,16 +433,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(20, 5, 0, 10),
                                 child: Row(
-                                  children: const <Widget>[
-                                    Padding(padding: EdgeInsets.only(right: 10),
+                                  children:  <Widget>[
+                                   const Padding(padding: EdgeInsets.only(right: 10),
 
                                         child:Icon(Icons.book,color: Colors.white,size: 18,)
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        'Предметы: 3 стандартных + 2 на выбор',
+                                        getTranslated.getTranslatedValue('subjects') ?? 'Предметы: 3 стандартных + 2 на выбор',
                                         textAlign: TextAlign.start,
-                                        style: TextStyle(
+                                        style:const  TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
                                           fontSize: 12,
@@ -457,15 +459,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               Padding(
                                 padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
                                 child: Row(
-                                  children: const <Widget>[
-                                    Padding(padding: EdgeInsets.only(right: 10),
+                                  children:  <Widget>[
+                                   const Padding(padding: EdgeInsets.only(right: 10),
                                         child:Icon(Icons.language,color: Colors.white,size: 18,)
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        'Языки: казахский, русский',
+                                        getTranslated.getTranslatedValue('languages') ?? 'Языки: казахский, русский',
                                         textAlign: TextAlign.start,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
                                           fontSize: 12,
@@ -496,20 +498,20 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Text(
-                          'Тест по предметам',
+                         Text(
+                          getTranslated.getTranslatedValue('subjectTest') ?? 'Тест по предметам',
                           textAlign: TextAlign.start,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                             fontFamily: 'Poppins',
                           ),
                         ),
                         InkWell(
-                          child: const Text(
-                            'Все',
+                          child:  Text(
+                            getTranslated.getTranslatedValue('all') ?? 'Все',
                             textAlign: TextAlign.start,
-                            style: TextStyle(
+                            style:const TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
                               color: Color.fromRGBO(255, 118, 72, 1),
@@ -578,8 +580,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Text(
-                      'Соревнуйся с друзьями',
+                     Text(
+                      getTranslated.getTranslatedValue('competition') ?? 'Соревнуйся с друзьями',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,

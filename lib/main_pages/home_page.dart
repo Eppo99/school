@@ -9,6 +9,7 @@ import 'question_page.dart';
 import 'settings.dart';
 import 'subscription.dart';
 import 'chat_screen.dart';
+import 'statistics.dart';
 
 class HomePage extends StatefulWidget  {
   const HomePage({Key? key}) : super(key: key);
@@ -172,7 +173,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             ),
                             Padding(
                               padding: drawingText,
-                              child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, CupertinoPageRoute(builder:(context)=>Statistics()));
+                                },
+                                  child: Text("Статистика", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                              ),
                             ),
                             Padding(
                               padding: drawingText,

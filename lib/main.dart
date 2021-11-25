@@ -7,27 +7,28 @@ import 'main_pages/home_page.dart';
 import 'main_pages/about.dart';
 import 'main_pages/my_friends.dart';
 import 'main_pages/settings.dart';
+import 'main_pages/statistics.dart';
 
 void main() {
 //  runApp( MyApp());
   runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      brightness: Brightness.dark,
-//    primaryColor: Colors.red[200],
-//      scaffoldBackgroundColor: Colors.white,
-//      appBarTheme: AppBarTheme(
-//        titleTextStyle: TextStyle(color: Colors.black),
-//        backgroundColor: HexColor("#fafafa") ,
-////        color: ,
-//        iconTheme: IconThemeData(color: Colors.black)
-//      ),
-
-
-    ),
+//    theme: ThemeData(
+//      brightness: Brightness.dark,
+////    primaryColor: Colors.red[200],
+////      scaffoldBackgroundColor: Colors.white,
+////      appBarTheme: AppBarTheme(
+////        titleTextStyle: TextStyle(color: Colors.black),
+////        backgroundColor: HexColor("#fafafa") ,
+//////        color: ,
+////        iconTheme: IconThemeData(color: Colors.black)
+////      ),
+//
+//
+//    ),
 
     title: 'Navigation Basics',
-    home: HomePage(),
+    home: Statistics(),
   ));
 }
 

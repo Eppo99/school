@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oneunion/localization/demo_localizations.dart';
+import 'package:oneunion/main_pages/favourites.dart';
+import 'package:oneunion/main_pages/forum.dart';
 import 'package:oneunion/main_pages/my_friends.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -184,7 +186,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             ),
                             Padding(
                               padding: drawingText,
-                              child: Text(getTranslated.getTranslatedValue('fav') ??"Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>Favourites()));
+                                  },
+                                  child: Text(getTranslated.getTranslatedValue('fav') ??"Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
                             ),
                           ],
                         ),
@@ -194,9 +200,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Padding(
-                              padding:  drawingText,
-                              child: Text("Форум", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                            InkWell(
+                              onTap: (){
+                                Navigator.push(context, CupertinoPageRoute(builder: (context)=>Forum()));
+                              },
+                              child: Padding(
+                                padding:  drawingText,
+                                child: Text("Форум", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              ),
                             ),
                             Padding(
                               padding: drawingText,
@@ -720,8 +731,5 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 }
-
-
-
 
 

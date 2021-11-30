@@ -11,15 +11,15 @@ import 'all_subjects.dart';
 
 class Statistics extends StatefulWidget {
 
-  Statistics();
-
-  /// Creates a [LineChart] with sample data and no transition.
-  factory Statistics.withSampleData() {
-    return new Statistics(
-//      _createSampleData(),
-      // Disable animations for image tests.
-    );
-  }
+//  Statistics();
+//
+//  /// Creates a [LineChart] with sample data and no transition.
+//  factory Statistics.withSampleData() {
+//    return  Statistics(
+////      _createSampleData(),
+//      // Disable animations for image tests.
+//    );
+//  }
 
 
   @override
@@ -28,18 +28,18 @@ class Statistics extends StatefulWidget {
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
     var myFakeMobileData = [
-      new LinearSales(0, 195),
-      new LinearSales(1, 175),
-      new LinearSales(2, 240),
-      new LinearSales(3, 225),
-      new LinearSales(4, 245),
-      new LinearSales(5, 205),
-      new LinearSales(6, 195),
-      new LinearSales(7, 175),
-      new LinearSales(8, 240),
-      new LinearSales(9, 225),
-      new LinearSales(10, 245),
-      new LinearSales(11, 205),
+       LinearSales(0, 195),
+       LinearSales(1, 175),
+       LinearSales(2, 240),
+       LinearSales(3, 225),
+       LinearSales(4, 245),
+       LinearSales(5, 205),
+       LinearSales(6, 195),
+       LinearSales(7, 175),
+       LinearSales(8, 240),
+       LinearSales(9, 225),
+       LinearSales(10, 245),
+       LinearSales(11, 205),
 
     ];
     return [
@@ -57,10 +57,9 @@ class Statistics extends StatefulWidget {
     ];
   }
   static List<charts.Series<LinearSales, int>> _createSampleData2() {
-    int count=100;
     var myFakeMobileData = [
       for(int i=0;i<16;i++)
-      new LinearSales(i, 195 +i%5*10- i%3 *20),
+       LinearSales(i, 195 +i%5*10- i%3 *20),
 
 
     ];
@@ -126,6 +125,13 @@ class _StatisticsState extends State<Statistics> {
                                 Statistics._createSampleData(),
                                 primaryMeasureAxis:
                                 charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+                                layoutConfig: charts.LayoutConfig(
+                                    leftMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    rightMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    topMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    bottomMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0)
+                                ),
+
                                 animate: false,
                                 domainAxis: charts.NumericAxisSpec(
                                     showAxisLine: false, renderSpec: charts.NoneRenderSpec()),
@@ -151,6 +157,13 @@ class _StatisticsState extends State<Statistics> {
                               ),
                               charts.LineChart(
                                 Statistics._createSampleData(),
+                                layoutConfig: charts.LayoutConfig(
+                                    leftMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    rightMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    topMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    bottomMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0)
+                                ),
+
                                 primaryMeasureAxis:
                                 charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
                                 animate: false,
@@ -191,6 +204,7 @@ class _StatisticsState extends State<Statistics> {
                         // This next line does the trick.
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
+
                           for(int i=0;i<AllSubjects().subjects.length;i++)
                             InkWell(
                               onTap: (){setState(() {
@@ -235,14 +249,19 @@ class _StatisticsState extends State<Statistics> {
                             children: [
                               charts.LineChart(
                                 Statistics._createSampleData2(),
-
+                                layoutConfig: charts.LayoutConfig(
+                                    leftMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    rightMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    topMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    bottomMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0)
+                                ),
                                 primaryMeasureAxis:
                                 charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
-
                                 domainAxis: charts.NumericAxisSpec(
                                     showAxisLine: false, renderSpec: charts.NoneRenderSpec()),
                                 defaultRenderer:
                                 charts.LineRendererConfig(areaOpacity: 90,radiusPx: 2,includeArea: true,strokeWidthPx: 3,includePoints: true,),
+                                animate: false,
 
 //            animate: animate
 //            dateTimeFactory: const charts.LocalDateTimeFactory(),
@@ -260,6 +279,25 @@ class _StatisticsState extends State<Statistics> {
                                 ),
                                 height:300 ,
                                 width: 100*11,
+                              ),
+                              charts.LineChart(
+                                Statistics._createSampleData2(),
+                                layoutConfig: charts.LayoutConfig(
+                                    leftMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    rightMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    topMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0),
+                                    bottomMarginSpec: charts.MarginSpec.fromPixel(maxPixel: 0,minPixel: 0)
+                                ),
+                                primaryMeasureAxis:
+                                charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+                                domainAxis: charts.NumericAxisSpec(
+                                    showAxisLine: false, renderSpec: charts.NoneRenderSpec()),
+                                defaultRenderer:
+                                charts.LineRendererConfig(areaOpacity: 90,radiusPx: 2,includeArea: false,strokeWidthPx: 3,includePoints: true,),
+                                animate: false,
+
+//            animate: animate
+//            dateTimeFactory: const charts.LocalDateTimeFactory(),
                               ),
 
                             ],

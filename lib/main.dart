@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oneunion/main_pages/subscription.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,27 +9,28 @@ import 'main_pages/about.dart';
 import 'main_pages/my_friends.dart';
 import 'main_pages/settings.dart';
 import 'main_pages/statistics.dart';
-
+import 'main_pages/favourites.dart';
+import 'main_pages/forum.dart';
 void main() {
 //  runApp( MyApp());
   runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
-//    theme: ThemeData(
+    theme: ThemeData(
 //      brightness: Brightness.dark,
-////    primaryColor: Colors.red[200],
-////      scaffoldBackgroundColor: Colors.white,
-////      appBarTheme: AppBarTheme(
-////        titleTextStyle: TextStyle(color: Colors.black),
-////        backgroundColor: HexColor("#fafafa") ,
-//////        color: ,
-////        iconTheme: IconThemeData(color: Colors.black)
-////      ),
-//
-//
-//    ),
+//    primaryColor: HexColor("FF7648"),
+//      scaffoldBackgroundColor: Colors.white,
+//      appBarTheme: AppBarTheme(
+//        titleTextStyle: TextStyle(color: Colors.black),
+//        backgroundColor: HexColor("#fafafa") ,
+////        color: ,
+//        iconTheme: IconThemeData(color: Colors.black)
+//      ),
+
+
+    ),
 
     title: 'Navigation Basics',
-    home: Statistics(),
+    home: HomePage(),
   ));
 }
 

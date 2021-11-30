@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:oneunion/localization/demo_localizations.dart';
 import 'package:oneunion/localization/language.dart';
 import 'package:oneunion/my_tools/hex_color.dart';
-import '../main.dart';
+import 'package:oneunion/main.dart';
 import 'faq.dart';
 import 'about.dart';
 
@@ -35,7 +35,7 @@ class _SettingsState extends State<Settings> {
     } else {
       _temp = Locale(Language.languageList().last.languageCode, 'KK');
     }
-    MyApp.setLocale(context, _temp);
+//    MyApp.setLocale(context, _temp);
   }
 
   @override

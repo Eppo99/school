@@ -16,15 +16,15 @@ void main() {
   runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-//      brightness: Brightness.dark,
-//    primaryColor: HexColor("FF7648"),
-//      scaffoldBackgroundColor: Colors.white,
-//      appBarTheme: AppBarTheme(
-//        titleTextStyle: TextStyle(color: Colors.black),
-//        backgroundColor: HexColor("#fafafa") ,
-////        color: ,
-//        iconTheme: IconThemeData(color: Colors.black)
-//      ),
+      brightness: Brightness.light,
+    primaryColor: HexColor("FF7648"),
+      scaffoldBackgroundColor: Colors.white,
+      appBarTheme: AppBarTheme(
+        titleTextStyle: TextStyle(color: Colors.black),
+        backgroundColor: HexColor("#fafafa") ,
+//        color: ,
+        iconTheme: IconThemeData(color: Colors.black)
+      ),
 
 
     ),

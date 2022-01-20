@@ -153,7 +153,7 @@ class AccessPageSms extends StatelessWidget {
                         side: BorderSide(color:Color(0xFFFF734A) )),
                     onPressed: (){
                       Navigator.push(context, CupertinoPageRoute(
-                          builder: (context)=>HomePage()
+                          builder: (context)=> HomePage()
                       )
                       ); //Navigator
                     }, //onPressed

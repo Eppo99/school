@@ -21,29 +21,10 @@ class HomePage extends StatefulWidget  {
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-  late Animation<double>animation;
-  late Animation<double>animation2;
+
   late AnimationController animController;
   bool isForward=false;
 
-  @override
-  void initState(){
-    super.initState();
-    animController=AnimationController(
-        duration: Duration(milliseconds: 200),vsync: this);
-    final curvedAnimation =
-    CurvedAnimation(parent: animController, curve: Curves.easeOutCubic);
-    animation=Tween<double>(begin: 0,end:350).animate(curvedAnimation)
-      ..addListener(() {
-        setState(() {
-        });
-      });
-    animation2=Tween<double>(begin: 0,end:56).animate(curvedAnimation)
-      ..addListener(() {
-        setState(() {
-        });
-      });
-  }
   bool menuButton=true;
   EdgeInsets drawingText=EdgeInsets.all(10);
   final controller = PageController(viewportFraction: 1, keepPage: true);
@@ -56,14 +37,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
    }
   @override
   Widget build(BuildContext context) {
-    final getTranslated = DemoLocalizations.of(context);
     return Scaffold(
+//      backgroundColor: Theme.of(context).primaryColorDark,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).colorScheme.onBackground,
+//        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//        foregroundColor: Theme.of(context).colorScheme.onBackground,
         elevation: 0,
         centerTitle: true,
-        leadingWidth: 56-animation2.value,
         automaticallyImplyLeading: menuButton,
         titleSpacing: 0,
         title:  Padding(
@@ -74,7 +54,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           children:  [
               Padding(
               padding: const EdgeInsets.all(10),
-          child: Text(getTranslated.getTranslatedValue('mainAppBar') ??'Привет, Ануар 👋',
+          child: Text('Привет, Ануар 👋',
             style: const TextStyle(
 
               fontSize: 20,
@@ -84,7 +64,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
         ],
       ),
-              search(),
 //              SearchButton(),
             ],
           ),
@@ -140,7 +119,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 ),
                                  Padding(
                                   padding: const EdgeInsets.all(2),
-                                  child: Text(getTranslated.getTranslatedValue('subscription') ??"Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
+                                  child: Text("Подписка активна ", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12),),
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.all(2),
@@ -162,7 +141,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                   onTap: (){
                                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>My_friends()));
                                   },
-                                  child: Text(getTranslated.getTranslatedValue('friends') ??"Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                                  child: Text("Мои друзья               +3", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
 
                               ),
                             ),
@@ -172,7 +151,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 onTap: (){
                                   Navigator.push(context, CupertinoPageRoute(builder: (context)=>Subscription()));
                                 },
-                                  child: Text(getTranslated.getTranslatedValue('subs') ??"Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
+                                  child: Text("Подписка", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)
                               ),
                             ),
                             Padding(
@@ -190,7 +169,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                   onTap: (){
                                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>Favourites()));
                                   },
-                                  child: Text(getTranslated.getTranslatedValue('fav') ??"Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
+                                  child: Text("Избранное", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
                             ),
                           ],
                         ),
@@ -212,7 +191,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             Padding(
                               padding: drawingText,
                               child:
-                              InkWell(child: Text(getTranslated.getTranslatedValue('params') ??"Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              InkWell(child: Text("Настройки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
                                 onTap: (){
                                   Navigator.push(context, CupertinoPageRoute(
                                       builder: (context)=>Settings()
@@ -226,7 +205,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                   onTap: (){
                                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>ChatScreen()));
                                   },
-                                  child: Text(getTranslated.getTranslatedValue('support') ??"Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
+                                  child: Text("Служба поддержки", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),)),
                             ),
                           ],
                         ),
@@ -239,7 +218,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             Padding(
                               padding: drawingText,
                               child:
-                              Text(getTranslated.getTranslatedValue('blackTheme') ??"Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+                              Text("Темная тема", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
                             ),
                             Padding(
                               padding: drawingText,
@@ -306,7 +285,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                           color: Color.fromRGBO(255, 55, 95, 1),
                                           borderRadius: BorderRadius.all(Radius.circular(80)),
                                         ),
-                                        child:  Text(getTranslated.getTranslatedValue('important') ??'Важно!',
+                                        child:  Text('Важно!',
                                             textAlign: TextAlign.start,
                                             style:TextStyle(
                                               color:Colors.white,
@@ -317,7 +296,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                      Padding(
                                       padding:const  EdgeInsets.fromLTRB(10, 15, 10, 25),
                                       child: Text(
-                                        getTranslated.getTranslatedValue('regulations') ??'Обновленные правила '
+                                        'Обновленные правила '
                                             'сдачи ЕНТ в Казахстане',
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w500,
@@ -329,7 +308,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                      Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: Text(
-                                        getTranslated.getTranslatedValue('more') ??'Подробнее',
+                                        'Подробнее',
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14,
@@ -376,7 +355,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   children: [
                      InkWell(
                       child:  Text(
-                        getTranslated.getTranslatedValue('setFullTest') ??'Сдать полный тест',
+                        'Сдать полный тест',
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
@@ -406,7 +385,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                Padding(
                                 padding:const  EdgeInsets.fromLTRB(20, 35, 20, 10),
                                 child: Text(
-                                  getTranslated.getTranslatedValue('fullTest') ??'Полный тест ЕНТ',
+                                  'Полный тест ЕНТ',
                                   textAlign: TextAlign.start,
                                   style:const TextStyle(
                                     fontWeight: FontWeight.w600,
@@ -425,7 +404,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        getTranslated.getTranslatedValue('time') ?? 'На выполнение: 4 часа',
+                                         'На выполнение: 4 часа',
                                         textAlign: TextAlign.start,
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -451,7 +430,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        getTranslated.getTranslatedValue('subjects') ?? 'Предметы: 3 стандартных + 2 на выбор',
+                                         'Предметы: 3 стандартных + 2 на выбор',
                                         textAlign: TextAlign.start,
                                         style:const  TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -476,7 +455,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                     ),
                                     Padding(padding: EdgeInsets.all(0),
                                       child:Text(
-                                        getTranslated.getTranslatedValue('languages') ?? 'Языки: казахский, русский',
+                                         'Языки: казахский, русский',
                                         textAlign: TextAlign.start,
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -510,7 +489,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                          Text(
-                          getTranslated.getTranslatedValue('subjectTest') ?? 'Тест по предметам',
+                           'Тест по предметам',
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
@@ -520,7 +499,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         ),
                         InkWell(
                           child:  Text(
-                            getTranslated.getTranslatedValue('all') ?? 'Все',
+                             'Все',
                             textAlign: TextAlign.start,
                             style:const TextStyle(
                               fontWeight: FontWeight.w600,
@@ -592,7 +571,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                      Text(
-                      getTranslated.getTranslatedValue('competition') ?? 'Соревнуйся с друзьями',
+                       'Соревнуйся с друзьями',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -653,79 +632,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               ),//forum widget
             ],
           ),
-        ),
-      ),
-    );
-  }
-  Widget search(){
-    return IntrinsicWidth(
-      child: Container(
-        color: Colors.transparent,
-        width: MediaQuery.of(context).size.width,
-        height: 50,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Container(
-              width: animation.value,
-              decoration: const BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    bottomLeft: Radius.circular(50),
-                  )
-              ),
-              child:
-              const Padding(
-                padding: EdgeInsets.only(left: 20,bottom: 5),
-                child: TextField(
-                  cursorColor: Colors.white12,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  decoration:InputDecoration(
-//                      prefixIcon: new Icon(Icons.search,color: Colors.white,),
-//                      border: InputBorder.none,
-                      hintText: "Search...",
-                      hintStyle: TextStyle(color: Colors.white)
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: 50,
-              height: 52,
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: animation.value>1 ? const BorderRadius.only(
-                      topLeft: Radius.circular(0),
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(50),
-                      topRight: Radius.circular(50)
-                  ):BorderRadius.circular(50)
-              ),
-              child:  InkWell(
-                  onTap: (){
-                    setState(() {
-                      if(!isForward){
-                        animController.forward();
-                        isForward=true;
-                        b(false);
-                      }
-                      else{
-                        animController.reverse();
-                        isForward=false;
-                        b(true);
-                      }
-                    });
-                  },
-                  child: const Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  )
-              ),
-            ),
-          ],
         ),
       ),
     );
